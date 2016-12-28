@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc//<mvc:annotation-driven />
 @ComponentScan({ "com.bank.credit.controller" })// component-scan
-@PropertySource("classpath:/app/application.properties")
+@PropertySource("classpath:/application.properties")
 public class AppWebConfig extends WebMvcConfigurerAdapter {
 
     @Override

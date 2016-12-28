@@ -10,6 +10,6 @@
 
   <body>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/core/extjs/ext-debug.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/core/app.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/app.js"></script>
   </body>
 </html>

@@ -1,7 +1,12 @@
+
 Ext.application({
     name: 'AB',
 
-    appFolder: 'app',
+    appFolder: 'static/app',
+
+    controllers: [
+        'Users'
+    ],
 
     launch: function() {
         Ext.create('Ext.container.Viewport', {
