@@ -27,10 +27,12 @@ public class PersonController extends AbstractController {
             Person person1 = new Person();
             person1.setName("Roy");
             person1.setEmail("roy@gmail.com");
+            person1.setPhone("3232563");
 
             Person person2 = new Person();
             person2.setName("Azi");
             person2.setEmail("azi@gmail.com");
+            person2.setPhone("9656845");
 
             List<Person> list = new ArrayList<>();
             list.add(person1);

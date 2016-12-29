@@ -5,6 +5,22 @@ Ext.define('eCredit.view.person.List' ,{
     title : 'All Persons',
     store: 'Persons',
 
+    columns: [
+        {header: 'Nombre',              dataIndex: 'name',  flex:1},
+        {header: 'Correo Electronico',  dataIndex: 'email', flex:1, sortable: false,
+            renderer: function(value) {
+                return Ext.String.format('<a href="mailto:{0}">{1}</a>', value, value);
+            }
+        },
+        {header: 'Telefono',            dataIndex: 'phone',         sortable: false }
+    ],
+    height: 200,
+    width: 400,
+
+    // PAGINACION ---> PENDIENTE
+
+    renderTo: Ext.getBody()
+/*
     initComponent: function() {
 
         this.columns = [
@@ -15,6 +31,6 @@ Ext.define('eCredit.view.person.List' ,{
         this.callParent(arguments);
     }
 
-
+*/
 
 });

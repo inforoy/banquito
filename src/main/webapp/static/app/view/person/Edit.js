@@ -21,6 +21,11 @@ Ext.define('eCredit.view.person.Edit', {
                         xtype: 'textfield',
                         name : 'email',
                         fieldLabel: 'Email'
+                    },
+                    {
+                        xtype: 'textfield',
+                        name: 'phone',
+                        fieldLabel: 'Phone'
                     }
                 ]
             }
