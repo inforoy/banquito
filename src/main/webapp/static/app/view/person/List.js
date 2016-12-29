@@ -16,9 +16,12 @@ Ext.define('eCredit.view.person.List' ,{
     ],
     height: 200,
     width: 400,
-
-    // PAGINACION ---> PENDIENTE
-
+    dockedItems: [{
+        xtype: 'pagingtoolbar',
+        store: 'Persons',   // same store GridPanel is using
+        dock: 'bottom',
+        displayInfo: true
+    }],
     renderTo: Ext.getBody()
 /*
     initComponent: function() {
