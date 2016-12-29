@@ -1,4 +1,4 @@
-package com.bank.credit.model.json;
+package com.bank.credit.model;
 
 public class GeneralResponse {
     private boolean success;
@@ -30,12 +30,8 @@ public class GeneralResponse {
         this.data = data;
     }
 
-    public Long getTotalCount() {
-        return totalCount;
-    }
+    public Long getTotalCount() { return totalCount; }
 
-    public void setTotalCount(Long totalCount) {
-        this.totalCount = totalCount;
-    }
+    public void setTotalCount(Long totalCount) { this.totalCount = totalCount; }
 
 }

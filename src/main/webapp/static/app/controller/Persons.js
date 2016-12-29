@@ -24,6 +24,7 @@ Ext.define('eCredit.controller.Persons', {
         var view = Ext.widget('personEdit');
         view.down('form').loadRecord(record);
     },
+
     updatePerson: function(button) {
         console.log('clicked the Save button');
         var win    = button.up('window'),
@@ -33,6 +34,7 @@ Ext.define('eCredit.controller.Persons', {
 
         record.set(values);
         win.close();
+        //this.getUsersStore().sync();
     }
 
 });

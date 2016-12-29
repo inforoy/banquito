@@ -2,10 +2,19 @@
 Ext.define('eCredit.store.Persons', {
     extend: 'Ext.data.Store',
     model: 'eCredit.model.Person',
+    autoLoad: true,
 
-    data: [
-        {name: 'Ed',    email: 'ed@sencha.com'},
-        {name: 'Tommy', email: 'tommy@sencha.com'}
-    ]
+    proxy : {
+        type: 'ajax',
+        api: {
+            read: 'getPersons.htm',
+            update: 'updatePersons.htm'
+        },
+        reader: {
+            type: 'json',
+            root: 'data',
+            successProperty: 'success'
+        }
+    }
 
 });
