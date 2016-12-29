@@ -1,23 +1,19 @@
 
 Ext.application({
-    name: 'AB',
+    name: 'eCredit',
 
     appFolder: 'static/app',
 
     controllers: [
-        'Users'
+        'Persons'
     ],
 
     launch: function() {
         Ext.create('Ext.container.Viewport', {
             layout: 'fit',
-            items: [
-                {
-                    xtype: 'panel',
-                    title: 'Users',
-                    html : 'List of users will go here'
-                }
-            ]
+            items: {
+                xtype: 'personList'
+            }
         });
     }
 });
