@@ -2,6 +2,8 @@
 Ext.define('eCredit.controller.Persons', {
     extend: 'Ext.app.Controller',
 
+    stores: ['Persons'],
+    models: ['Person'],
     views: [
         'person.List',
         'person.Edit'
@@ -10,7 +12,6 @@ Ext.define('eCredit.controller.Persons', {
     init: function() {
         this.control({
             'personList': {
-                //render: this.onPanelRendered
                 itemdblclick : this.editPersons
             }
         });

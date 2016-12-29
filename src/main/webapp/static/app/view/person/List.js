@@ -2,17 +2,10 @@
 Ext.define('eCredit.view.person.List' ,{
     extend: 'Ext.grid.Panel',
     alias : 'widget.personList',
-
-    title : 'All Users',
+    title : 'All Persons',
+    store: 'Persons',
 
     initComponent: function() {
-        this.store = {
-            fields: ['name', 'email'],
-            data  : [
-                {name: 'Ed',    email: 'ed@sencha.com'},
-                {name: 'Tommy', email: 'tommy@sencha.com'}
-            ]
-        };
 
         this.columns = [
             {header: 'Name',  dataIndex: 'name',  flex: 1},
@@ -21,4 +14,7 @@ Ext.define('eCredit.view.person.List' ,{
 
         this.callParent(arguments);
     }
+
+
+
 });
