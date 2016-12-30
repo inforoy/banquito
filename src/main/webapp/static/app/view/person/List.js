@@ -1,7 +1,7 @@
 
 Ext.define('eCredit.view.person.List' ,{
     extend: 'Ext.grid.Panel',
-    alias : 'widget.personList',
+    alias : 'widget.PersonList',
     title : 'All Persons',
     store: 'Persons',
 

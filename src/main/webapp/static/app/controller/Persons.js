@@ -11,7 +11,7 @@ Ext.define('eCredit.controller.Persons', {
 
     init: function() {
         this.control({
-            'viewport > personList': {
+            'viewport > PersonList': {
                 itemdblclick : this.editPersons
             },
             'personEdit button[action=save]': {

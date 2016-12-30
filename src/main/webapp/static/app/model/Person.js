@@ -1,5 +1,9 @@
 
 Ext.define('eCredit.model.Person', {
     extend: 'Ext.data.Model',
-    fields: ['name', 'email', 'phone']
+    fields: [
+        'name',
+        'email',
+        'phone'
+    ]
 });
