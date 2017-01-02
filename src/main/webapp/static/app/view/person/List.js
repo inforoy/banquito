@@ -4,36 +4,55 @@ Ext.define('eCredit.view.person.List' ,{
     alias : 'widget.PersonList',
     title : 'All Persons',
     store: 'Persons',
+    loadMask: true,
+    columnLines: true,
 
-    columns: [
-        {header: 'Nombre',              dataIndex: 'name',  flex:1},
-        {header: 'Correo Electronico',  dataIndex: 'email', flex:1, sortable: false,
-            renderer: function(value) {
-                return Ext.String.format('<a href="mailto:{0}">{1}</a>', value, value);
-            }
-        },
-        {header: 'Telefono',            dataIndex: 'phone',         sortable: false }
-    ],
-    height: 200,
-    width: 400,
-    dockedItems: [{
-        xtype: 'pagingtoolbar',
-        store: 'Persons',   // same store GridPanel is using
-        dock: 'bottom',
-        displayInfo: true
-    }],
-    renderTo: Ext.getBody()
 /*
+    tbar: [
+        {
+            xtype: 'UpperCaseTextField',
+            fieldLabel:'BUSCAR',
+            action:'searchRoleGeneral',
+            labelWidth:60,
+            width:300
+        },'-'
+
+    ],
+    bbar:{
+        xtype: 'pagingtoolbar',
+        pageSize: 10,
+        store: 'store.Persons',
+        displayInfo: true,
+        displayMsg: 'Mostrando {0} - {1} de {2}',
+        items:['-',{text:'EXPORTAR A PDF',action:'exportUserPdf',iconCls:'pdf'},'-',{text:'EXPORTAR A EXCEL',action:'exportUserXls',iconCls:'excel'},'-',{ xtype: 'UpperCaseTrigger',action:'searchGridRoleGeneral',fieldLabel:'FILTRO',labelWidth:60,width:300}],
+        emptyMsg: 'No existe informaci&oacute;n a mostrar'
+
+    },
+*/
+    listeners:{
+        render:function(){
+            var me = this;
+            me.store.getProxy().extraParams = {propertyOrder: 'fullName'};
+            me.store.getProxy().url = 'getPersons.htm';
+            //me.down('pagingtoolbar').moveFirst();
+        }
+    },
+
     initComponent: function() {
-
         this.columns = [
-            {header: 'Name',  dataIndex: 'name',  flex: 1},
-            {header: 'Email', dataIndex: 'email', flex: 1}
-        ];
 
+            {xtype: 'rownumberer', width:25, sortable: false},
+            {header: 'Nombre',              dataIndex: 'name',  flex:1},
+            {header: 'Correo Electronico',  dataIndex: 'email', flex:1, sortable: false,
+                renderer: function(value) {
+                    return Ext.String.format('<a href="mailto:{0}">{1}</a>', value, value);
+                }
+            },
+            {header: 'Telefono',            dataIndex: 'phone',         sortable: false }
+
+        ];
         this.callParent(arguments);
     }
 
-*/
 
 });

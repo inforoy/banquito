@@ -6,6 +6,21 @@
     <title>eCredit</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/core/extjs/resources/css/ext-all.css">
 
+    <style type="text/css">
+      .application {
+        background-image: url(${pageContext.request.contextPath}/static/core/images/application.png) !important;
+      }
+      .pending {
+        background-image: url(${pageContext.request.contextPath}/static/core/images/pending.png) !important;
+      }
+      .process {
+        background-image: url(${pageContext.request.contextPath}/static/core/images/process.png) !important;
+      }
+      .pie {
+        background-image: url(${pageContext.request.contextPath}/static/core/images/pie.png) !important;
+      }
+    </style>
+
   </head>
 
   <body>
