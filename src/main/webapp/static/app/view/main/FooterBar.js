@@ -18,12 +18,10 @@ Ext.define('eCredit.view.main.FooterBar',{
                 cls:'text-toolbar',
                 listeners: {
                     afterrender: function (field) {
-/*
                         Ext.Ajax.request({
-                            method:'POST',
+                            method:'GET',
                             url:'getAttributesToSession.htm',
                             success:function(response){
-
                                 response = Ext.decode(response.responseText);
                                 if(response.success){
                                     field.setText('AGENCIA: '+response.descriptionAgency);
@@ -32,26 +30,16 @@ Ext.define('eCredit.view.main.FooterBar',{
                                 else {
                                     this.messageAlert("ERROR", response.mensaje,Ext.Msg.ERROR);
                                 }
-
                             },
                             failure:function(){
                                 console.log("Error Inesperado en Ajax");
                             }
                         });
-*/
-
-
-                        field.setText('AGENCIA: '+ "Ayacucho");
-                        Ext.ComponentQuery.query('FooterBar tbtext')[0].setText('USUARIO: '+ "Yeny" +' | '+'ROL: '+ "Agente");
-
-
                     }
                 }
-
             },'-'
         ];
         this.callParent();
     }
 
 });
-//'<div class="partkeepr-logo">SIGEEM-SISTEMA DE GESTION EMPRESARIAL</div>',

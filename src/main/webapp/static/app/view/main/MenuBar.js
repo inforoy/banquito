@@ -36,7 +36,7 @@ Ext.define('eCredit.view.main.MenuBar', {
         type: 'hbox'
     },
     initComponent: function () {
-        this.systemMenu = Ext.create('Ext.menu.Menu', {
+        /*this.systemMenu = Ext.create('Ext.menu.Menu', {
             items: [
                 {
                     text: 'Disconnect',
@@ -47,7 +47,7 @@ Ext.define('eCredit.view.main.MenuBar', {
                     icon: 'resources/fugue-icons/icons/gear.png'
                 }
             ]
-        });
+        });*/
         this.items = [
             '->',
             {
@@ -125,4 +125,5 @@ function loadPanelDirect(value) {
         Ext.ComponentQuery.query('ViewPanelDocumentPending combobox')[0].setValue(value);
     }
     */
+    alert(value);
 }

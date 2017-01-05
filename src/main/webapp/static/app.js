@@ -20,6 +20,7 @@ Ext.application({
     appFolder: 'static/app',
     controllers: [
         'Persons'
+        //,'main.ControllerTreeMain'
     ],
 
     launch: function() {

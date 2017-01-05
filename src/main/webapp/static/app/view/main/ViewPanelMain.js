@@ -7,7 +7,7 @@ Ext.define('eCredit.view.main.ViewPanelMain',{
 	initComponent:function(){
 
 		this.navigationMain = Ext.create('eCredit.view.main.ViewTreeMain',{
-			title:'CUMPLIMIENTO',
+			title:'Menu Principal',
 			region:'west',
 			collapsible:true,
 			margin:'0 2 0 0',
@@ -18,9 +18,9 @@ Ext.define('eCredit.view.main.ViewPanelMain',{
 		});
 
 
-		this.editorTabPanelMain=Ext.create('Ext.tab.Panel',{
+		this.editorTabPanelMain = Ext.create('Ext.tab.Panel',{
 			tabPosition: 'bottom',
-           /////////// action:'principalTab',
+            action:'principalTab',
 			bodyStyle:'background:#EFEFEF',
 			region:'center',
           //  layout:'border'
@@ -35,7 +35,6 @@ Ext.define('eCredit.view.main.ViewPanelMain',{
 		
 	}
 
-	/*
 	,addPanel:function(item){
     	var cmp = this.editorTabPanelMain.down("[title="+item.title+"]");
     	if(!cmp){
@@ -45,7 +44,6 @@ Ext.define('eCredit.view.main.ViewPanelMain',{
     		this.editorTabPanelMain.setActiveTab(cmp);
     	}
 	}
-	*/
 
 });
 eCredit.getComponent=function(){
