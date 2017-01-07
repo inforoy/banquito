@@ -1,16 +1,16 @@
 Ext.namespace('eCredit');
 
-/*
+
 Ext.Loader.setConfig({
     enabled	:	true,
     paths	:	{
-        eCredit	    : "app",
-        "Ext.ux"  	: "app/Ext.ux",
-        "source"    : "app/lib"
+        eCredit	    : "static/app",
+        "Ext.ux"  	: "static/app/Ext.ux",
+        "source"    : "static/app/lib"
         //      "Validation" : "app/lib"
     }
 });
-*/
+
 
 eCredit.application = null;
 

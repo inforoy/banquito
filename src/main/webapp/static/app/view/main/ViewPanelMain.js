@@ -19,7 +19,8 @@ Ext.define('eCredit.view.main.ViewPanelMain',{
 
 
 		this.editorTabPanelMain = Ext.create('Ext.tab.Panel',{
-			tabPosition: 'bottom',
+			//tabPosition: 'bottom',
+			itemId:'editorTabPanelMain',
             action:'principalTab',
 			bodyStyle:'background:#EFEFEF',
 			region:'center',

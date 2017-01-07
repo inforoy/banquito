@@ -44,6 +44,7 @@ Ext.define("eCredit.view.main.ViewTreeMain",{
 					{
 						text: 'Solicitud de Credito',
 						leaf: true,
+						iconCls:'pdf.png',
 						useArrows: true
 					},
 					{
@@ -64,6 +65,23 @@ Ext.define("eCredit.view.main.ViewTreeMain",{
 			}
 
 		]
+	},
+	listeners:{
+		itemclick:function(){
+
+			var panelForm= Ext.create('Ext.panel.Panel',{
+				title:'hola',
+				html:'texto panel',
+				closable:true
+			});
+
+
+			var panel = Ext.ComponentQuery.query('ViewPanelMain')[0]
+			var tabPanel= panel.down('#editorTabPanelMain')
+			console.log(panel.down('#editorTabPanelMain'));
+			console.log(panel.down('tabpanel'));
+			tabPanel.add(panelForm)
+		}
 	}
 
 });
