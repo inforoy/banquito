@@ -31,7 +31,7 @@ Ext.define('eCredit.view.main.ViewPanelMain',{
 
 		});
 		
-		this.items=[this.navigationMain,this.editorTabPanelMain];
+		this.items=[this.navigationMain, this.editorTabPanelMain];
 		this.callParent();
 		
 	}

@@ -60,6 +60,17 @@ public class PrincipalController extends AbstractController{
 			jsonObject.addProperty("descriptionAgency", "Ayacucho");
 			jsonObject.addProperty("username", "Yeny");
 			jsonObject.addProperty("descriptionRole", "Prestamista");
+
+			jsonObject.addProperty("responseText", "responseText");
+			jsonObject.addProperty("fullName", "Yeny Canales.");
+			jsonObject.addProperty("category", "COLABORADOR.");
+
+			jsonObject.addProperty("pending", "0");
+			jsonObject.addProperty("process", "21");
+
+
+
+
 		} catch (Exception e){
 			e.getMessage();
 			jsonObject.addProperty("mensaje", e.getMessage());

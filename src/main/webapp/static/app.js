@@ -1,17 +1,16 @@
 Ext.namespace('eCredit');
 
-
 Ext.Loader.setConfig({
     enabled	:	true,
     paths	:	{
         eCredit	    : "static/app",
-        "Ext.ux"  	: "static/app/Ext.ux",
-        "source"    : "static/app/lib"
+        //"Ext.ux"  	: "static/core/Ext.ux",
+        //"source"    : "static/core/lib"
         //      "Validation" : "app/lib"
     }
 });
 
-
+Ext.Loader.setPath('Ext.ux','app/ux');
 eCredit.application = null;
 
 Ext.application({
@@ -20,6 +19,9 @@ Ext.application({
     appFolder: 'static/app',
     controllers: [
         'Persons'
+       // ,'eCredit.controller.register.ControllerPanelRegisterPersona'
+        ,'eCredit.controller.main.ControllerTreeMain'
+
         //,'main.ControllerTreeMain'
     ],
 
@@ -34,15 +36,17 @@ Ext.application({
         this.centerPanel = Ext.create('eCredit.view.main.ViewPanelMain',{region:'center'});
         Ext.create('Ext.container.Viewport',{
             layout	:'fit',
-            items	:[{
-                xtype	:	'panel',
-                //xtype   :   'PersonList',
-                border	:	false,
-                layout	:	'border',
-                items	:	[this.centerPanel],
-                tbar	:	this.menuBar,
-                bbar    :   this.footerBar
-            }]
+            items	:[
+                {
+                    xtype	:	'panel',
+                    //xtype   :   'PersonList',
+                    border	:	false,
+                    layout	:	'border',
+                    items	:	[this.centerPanel],
+                    tbar	:	this.menuBar,
+                    bbar    :   this.footerBar
+                }
+            ]
         });
     }
 

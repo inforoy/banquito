@@ -1,15 +1,14 @@
-/*Ext.Ajax.request({
-    method: 'POST',
+Ext.Ajax.request({
+    method: 'GET',
     url: 'getAttributesToSession.htm',
     success: function (response) {
-
         response = Ext.decode(response.responseText);
         if (response.success) {
             var menuBar = Ext.ComponentQuery.query('MenuBar')[0];
             menuBar.down('tbtext').setText(response.fullName);
             fullName = response.fullName;
-            controlCategory = response.category;
-            if (response.category != DukeSource.view.risk.util.Constants.COLLABORATOR) {
+            //controlCategory = response.category;
+            if (response.category != 'COLABORADOR') {
                 menuBar.query('.button').forEach(function (c) {
                     c.setVisible(true);
                 });
@@ -18,14 +17,15 @@
             }
         }
         else {
-            this.messageAlert(DukeSource.view.risk.util.Messages.TITLE_ERROR, response.mensaje, Ext.Msg.ERROR);
+            this.messageAlert("ERROR", response.mensaje, Ext.Msg.ERROR);
+            this.messageAlert("ERROR", response.mensaje, Ext.Msg.ERROR);
         }
     },
     failure: function () {
 
     }
 });
-*/
+
 
 Ext.define('eCredit.view.main.MenuBar', {
     alias: 'widget.MenuBar',
@@ -36,7 +36,8 @@ Ext.define('eCredit.view.main.MenuBar', {
         type: 'hbox'
     },
     initComponent: function () {
-        /*this.systemMenu = Ext.create('Ext.menu.Menu', {
+        /*
+        this.systemMenu = Ext.create('Ext.menu.Menu', {
             items: [
                 {
                     text: 'Disconnect',
@@ -47,7 +48,8 @@ Ext.define('eCredit.view.main.MenuBar', {
                     icon: 'resources/fugue-icons/icons/gear.png'
                 }
             ]
-        });*/
+        });
+        */
         this.items = [
             '->',
             {
@@ -59,8 +61,8 @@ Ext.define('eCredit.view.main.MenuBar', {
                 cls: 'mybutton',
                 overCls: 'customOverStyle',
                 height: 40,
-                handler: function () {
-                    loadPanelDirect("PENDIENTE");
+                handler: function () {// Al hacer click se ejecuta el handler
+                    loadPanelDirect("Notificaciones");
                 }
 
             },
@@ -73,9 +75,9 @@ Ext.define('eCredit.view.main.MenuBar', {
                 cls: 'mybutton',
                 overCls: 'customOverStyle',
                 height: 40,
-                handler: function () {
+                handler: function () {// Al hacer click se ejecuta el handler
                     general = "PROGRESO";
-                    loadPanelDirect("PROGRESO");
+                    loadPanelDirect("Progreso");
                 }
             },
 
@@ -105,7 +107,7 @@ Ext.define('eCredit.view.main.MenuBar', {
 
 });
 function loadPanelDirect(value) {
-    /*
+/*
     if (Ext.ComponentQuery.query('ViewPanelDocumentPending')[0] == undefined) {
         Ext.ComponentQuery.query('ViewTreeMain')[0].collapse();
         DukeSource.getApplication().loadController('DukeSource.controller.fulfillment.ControllerPanelDocumentPending');
@@ -124,6 +126,6 @@ function loadPanelDirect(value) {
         general = DukeSource.view.risk.util.Constants.PENDING;
         Ext.ComponentQuery.query('ViewPanelDocumentPending combobox')[0].setValue(value);
     }
-    */
+*/
     alert(value);
 }

@@ -8,12 +8,10 @@ Ext.define("eCredit.view.main.ViewTreeMain",{
 	//store:'eCredit.store.main.StoreTreeMain',
 	rootVisible: false,
 
-	/*mixins: {
-		treeFilter: 'eCredit.lib.extjs4-treefilter'
-	 },
-	 */
-
 	/*
+	mixins: {
+		treeFilter: 'eCredit.core.lib.extjs4-treefilter'
+	 },
 	   dockedItems:[{
 		   xtype:'toolbar',
 		   items:[
@@ -22,40 +20,128 @@ Ext.define("eCredit.view.main.ViewTreeMain",{
 		   ]
 	   }],
 	*/
+
 	root: {
 		text: 'Root',
 		expanded: true,
 		children: [
 			{
-				text: 'Registrar',
+				text: 'Creditos',
 				expanded: true,
 				children: [
 					{
-						text: 'Socio',
+						text: 'Solicitar de Credito',
+						leaf: true,
+						useArrows: true
+						,handler: function () {
+							alert("1");
+						}
+					},
+					{
+						text: 'Aprobar Solicitud',
+						leaf: true,
+						useArrows: true
+						,handler: function () {
+							alert("2");
+						}
+					},
+					{
+						text: 'Emitir Credito',
+						leaf: true,
+						useArrows: true
+						,handler: function () {
+							alert("3");
+						}
+					}
+				]
+			},
+			{
+				text: 'Pagos',
+				expanded: true,
+				children: [
+					{
+						text: 'Pagar Letra de Credito',
+						leaf: true,
+						useArrows: true
+					},
+					{
+						text: 'Pagar Mora de Credito',
+						leaf: true,
+						useArrows: true
+					},
+					{
+						text: 'Pagar Aporte',
+						leaf: true,
+						useArrows: true
+					},
+					{
+						text: 'Pagar Mora de Aporte',
 						leaf: true,
 						useArrows: true
 					}
 				]
 			},
 			{
-				text: 'Creditos',
+				text: 'Depositos',
+				expanded: false,
+				children:[
+					{
+						text: 'Deposito a Cuenta de Ahorro',
+						leaf: true
+					}
+				]
+			},
+			{
+				text: 'Retiros',
+				expanded: false,
+				children:[
+					{
+						text: 'Retiro Cuenta de Ahorro',
+						leaf: true
+					}
+				]
+			},
+			{
+				text: 'Caja / Boveda',
+				expanded: false,
+				children:[
+					{
+						text: 'Abrir Boveda',
+						leaf: true
+					},
+					{
+						text: 'Cerrar Boveda',
+						leaf: true
+					},
+					{
+						text: 'Abrir Caja',
+						leaf: true
+					},
+					{
+						text: 'Cerrar Caja',
+						leaf: true
+					},
+					{
+						text: 'Transferencia de Boveda a Caja',
+						leaf: true
+					},
+					{
+						text: 'Transferencia de Caja a Boveda',
+						leaf: true
+					}
+				]
+			},
+			{
+				text: 'Registro',
 				expanded: true,
-				children: [
+				children:[
 					{
-						text: 'Solicitud de Credito',
-						leaf: true,
-						iconCls:'pdf.png',
-						useArrows: true
+						text: 'Registrar Persona',
+						leaf: true
 					},
 					{
-						text: 'Aprobar Solicitud',
-						leaf: true,
-						useArrows: true
-					},
-					{
-						text: 'Emitir Credito',
-						leaf: true,
-						useArrows: true
+						text: 'Registrar Socio',
+						leaf: true
 					}
 				]
 			},
@@ -65,77 +151,40 @@ Ext.define("eCredit.view.main.ViewTreeMain",{
 			}
 
 		]
-	},
-	listeners:{
+	}
+	/*
+	,listeners:{
 		itemclick:function(){
 
 			var panelForm = Ext.create('Ext.panel.Panel',{
-				title:'hola',
-				bodyPadding: 5,
-				width: 350,
+				title:'Registrar Persona',
 				closable:true,
-				// The form will submit an AJAX request to this URL when submitted
-				url: 'save-form.php',
+				bodyPadding: 5,
+				//model: 'eCredit.model.register.ModelGridPanelRegisterPersona',
+				width: 400,
+				height: 200,
+				activeTab: 0,
+				//plain: true,
 
-				// Fields will be arranged vertically, stretched to full width
-				layout: 'anchor',
-				defaults: {
-					anchor: '100%'
-				},
-
-				// The fields
-				defaultType: 'textfield',
-				items: [{
-					fieldLabel: 'First Name',
-					name: 'first',
-					allowBlank: false
-				},{
-					fieldLabel: 'Last Name',
-					name: 'last',
-					allowBlank: false
-				},
-					{
-						fieldLabel: 'lo que sea',
-						name: 'last',
-						allowBlank: false
-					}
-				],
-
-				// Reset and Submit buttons
-				buttons: [{
-					text: 'Reset',
-					handler: function() {
-						this.up('form').getForm().reset();
-					}
-				}, {
-					text: 'Submit',
-					formBind: true, //only enabled once the form is valid
-					disabled: true,
-					handler: function() {
-						var form = this.up('form').getForm();
-						if (form.isValid()) {
-							form.submit({
-								success: function(form, action) {
-									Ext.Msg.alert('Success', action.result.msg);
-								},
-								failure: function(form, action) {
-									Ext.Msg.alert('Failed', action.result.msg);
-								}
-							});
-						}
-					}
-				}],
+				html: '<p>World!</p>',
 				renderTo: Ext.getBody()
 			});
 
 
-			var panel = Ext.ComponentQuery.query('ViewPanelMain')[0]
-			var tabPanel= panel.down('#editorTabPanelMain')
-			console.log(panel.down('#editorTabPanelMain'));
-			console.log(panel.down('tabpanel'));
-			tabPanel.add(panelForm)
+			var panel = Ext.ComponentQuery.query('ViewPanelMain')[0];
+			var tabPanel= panel.down('tabpanel');
+			//var tabPanel= panel.down('#editorTabPanelMain');
+			//console.log(panel.down('#editorTabPanelMain'));
+			//console.log(panel.down('tabpanel'));
+			tabPanel.add(panelForm);
+			//tabPanel.addPanel(panelForm);
+		},
+
+		itemdblclick:function(){
+			console.log("doble click");
 		}
 	}
+	*/
 
 });
 
