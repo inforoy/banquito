@@ -22,15 +22,15 @@ public class PersonController extends AbstractController {
     @Autowired
     private PersonaService personaService;
 
-    @RequestMapping(value="/getPersons.htm", method = RequestMethod.GET)
+    @RequestMapping(value="/getListPersons.htm", method = RequestMethod.GET)
     @ResponseBody
     public String getListPersons(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData = null;
         try {
-            boolean usuariosActivos = false;
-            List<Persona> list = personaService.listPersonActive(usuariosActivos);
+            boolean userActive = false;
+            List<Persona> list = personaService.listPersonActive(userActive);
 
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");

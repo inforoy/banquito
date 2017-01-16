@@ -9,7 +9,7 @@ Ext.define('eCredit.store.Persons', {
     proxy : {
         type: 'ajax',
         api: {
-            read: 'getPersons.htm',
+            read: 'getListPersons.htm',
             update: 'updatePersons.htm'
         },
         reader: {

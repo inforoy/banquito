@@ -1,8 +1,15 @@
 Ext.define('eCredit.controller.main.ControllerTreeMain', {
     extend: 'Ext.app.Controller',
-    models: [],
-    stores: [],
-    views: ['eCredit.view.main.ViewPanelGeneral'],
+    models: [
+        'eCredit.model.persona.PersonaModel'
+    ],
+    stores: [
+        'eCredit.store.persona.PersonaStore'
+    ],
+    views: [
+        'eCredit.view.main.ViewPanelGeneral',
+        'eCredit.view.persona.ViewPanelGridPersona'
+    ],
 
     refs: [
         {
@@ -52,21 +59,9 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
         //view.up('panel').collapse(); // Para que se oculte automaticamente
         eCredit.getApplication().centerPanel.addPanel(gnrlViewTab);
         //eCredit.getApplication().loadController(response.controller);
-        gnrlViewTab.addPanel(Ext.create('Ext.panel.Panel'/*response.clase*/, {
-            bodyPadding: 5,  // Don't want content to crunch against the borders
-            width: 300,
-            plain: true,
-            title: 'Registrar Persona',
-            items: [{
-                xtype: 'textfield',
-                fieldLabel: 'Start date'
-            }, {
-                xtype: 'datefield',
-                fieldLabel: 'End date'
-            }],
-            renderTo: Ext.getBody()
+        var newPanel = Ext.create('eCredit.view.persona.ViewPanelGridPersona');
 
-        }));
+        gnrlViewTab.addPanel(newPanel);
     }
 
 });

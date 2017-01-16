@@ -19,10 +19,7 @@ Ext.application({
     appFolder: 'static/app',
     controllers: [
         'Persons'
-       // ,'eCredit.controller.register.ControllerPanelRegisterPersona'
         ,'eCredit.controller.main.ControllerTreeMain'
-
-        //,'main.ControllerTreeMain'
     ],
 
     launch: function() {

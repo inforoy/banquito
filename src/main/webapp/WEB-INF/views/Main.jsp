@@ -11,67 +11,67 @@
         margin: 0px;
         height: 100%;
       }
-      .logout{
+      .icon-logout{
         background-image:url(${pageContext.request.contextPath}/static/core/images/logout.png) !important;
       }
-      .save {
+      .icon-save {
         background-image: url(${pageContext.request.contextPath}/static/core/images/save.ico) !important;
       }
-      .search {
+      .icon-search {
         background-image: url(${pageContext.request.contextPath}/static/core/images/search.ico) !important;
       }
-      .Log-Out-icon {
+      .icon-Log-Out-icon {
         background-image: url(${pageContext.request.contextPath}/static/core/images/Log-Out-icon.png) !important;
       }
-      .new-user {
+      .icon-new-user {
         background-image: url(${pageContext.request.contextPath}/static/core/images/new-user.png) !important;
       }
-      .modify {
+      .icon-modify {
         background-image: url(${pageContext.request.contextPath}/static/core/images/modify.png) !important;
       }
-      .application {
+      .icon-application {
         background-image: url(${pageContext.request.contextPath}/static/core/images/application.png) !important;
       }
-      .pending {
+      .icon-pending {
         background-image: url(${pageContext.request.contextPath}/static/core/images/pending.png) !important;
       }
-      .process {
+      .icon-process {
         background-image: url(${pageContext.request.contextPath}/static/core/images/process.png) !important;
       }
-      .pie {
+      .icon-pie {
         background-image: url(${pageContext.request.contextPath}/static/core/images/pie.png) !important;
       }
-      .pdf {
+      .icon-pdf {
         background-image: url(${pageContext.request.contextPath}/static/core/images/pdf.png) !important;
       }
-      .excel {
+      .icon-excel {
         background-image: url(${pageContext.request.contextPath}/static/core/images/excel.png) !important;
       }
-      .new {
+      .icon-new {
         background-image: url(${pageContext.request.contextPath}/static/core/images/new.png) !important;
       }
-      .users {
+      .icon-users {
         background-image: url(${pageContext.request.contextPath}/static/core/images/users.png) !important;
       }
-      .delete {
+      .icon-delete {
         background-image: url(${pageContext.request.contextPath}/static/core/images/delete.png) !important;
       }
-      .add {
+      .icon-add {
         background-image: url(${pageContext.request.contextPath}/static/core/images/add.png) !important;
       }
-      .assign {
+      .icon-assign {
         background-image: url(${pageContext.request.contextPath}/static/core/images/assign.png) !important;
       }
-      .finish {
+      .icon-finish {
         background-image: url(${pageContext.request.contextPath}/static/core/images/finish.png) !important;
       }
-      .advance {
+      .icon-advance {
         background-image: url(${pageContext.request.contextPath}/static/core/images/advance.png) !important;
       }
-      .attachFile {
+      .icon-attachFile {
         background-image: url(${pageContext.request.contextPath}/static/core/images/attachFile.png) !important;
       }
-      .detail {
+      .icon-detail {
         background-image: url(${pageContext.request.contextPath}/static/core/images/detail.png) !important;
       }
     </style>
@@ -81,6 +81,7 @@
   <body>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/core/extjs/ext-debug.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/app/view/util/Messages.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/core/extjs/locale/ext-lang-es.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/app.js"></script>
   </body>
 </html>

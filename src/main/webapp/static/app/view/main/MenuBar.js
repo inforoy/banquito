@@ -93,7 +93,7 @@ Ext.define('eCredit.view.main.MenuBar', {
                 xtype: 'button',
                 scale: 'large',
                 rowspan: 3,
-                iconCls: 'logout',
+                iconCls: 'icon-logout',
                 overCls: 'customOverStyle',
                 cls: 'mybutton',
                 url: 'logout',

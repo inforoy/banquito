@@ -33,7 +33,7 @@ Ext.define('eCredit.view.person.List' ,{
         render:function(){
             var me = this;
             me.store.getProxy().extraParams = {propertyOrder: 'fullName'};
-            me.store.getProxy().url = 'getPersons.htm';
+            me.store.getProxy().url = 'getListPersons.htm';
             //me.down('pagingtoolbar').moveFirst();
         }
     },
