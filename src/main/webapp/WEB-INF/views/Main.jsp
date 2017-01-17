@@ -80,8 +80,8 @@
 
   <body>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/core/extjs/ext-debug.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/app/view/util/Messages.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/core/extjs/locale/ext-lang-es.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/app/view/util/Messages.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/app.js"></script>
   </body>
 </html>

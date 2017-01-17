@@ -8,7 +8,8 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
     ],
     views: [
         'eCredit.view.main.ViewPanelGeneral',
-        'eCredit.view.persona.ViewPanelGridPersona'
+        'eCredit.view.persona.ViewPanelGridPersona',
+        'eCredit.view.persona.ViewPanelFormPersona'
     ],
 
     refs: [
@@ -23,6 +24,26 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
             'ViewTreeMain': {
                 itemclick: this._onItemClick
             },
+            'ViewPanelGridPersona': {
+                itemdblclick : this._onEditPersona
+            },
+            'ViewPanelGridPersona button#add': {
+                click: this._onAddPersona
+            },
+
+            'ViewPanelGridPersona button#delete': {
+                click: this._onDeletePersona
+            },
+
+            /** acciones del los botones guardar y acncelar **/
+            'ViewPanelFormPersona button#cancel': {
+                click: this._onClickCancelPersona
+            },
+
+            'ViewPanelFormPersona button#save': {
+                click: this._onClickSavePersona
+            },
+
             '[action=expand]': {
                 click: this._onExpand
             },
@@ -40,6 +61,71 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
             console.log("Otros");
         }
     },
+    _onAddPersona: function(btn, e, eOpts){
+        var win = Ext.create('eCredit.view.persona.ViewPanelFormPersona');
+        win.setTitle("Nueva Persona");
+    },
+
+    _onDeletePersona:function(btn, e, eOpts){
+        var grid = btn.up('grid');
+        var record = grid.getSelectionModel().getSelection();
+        var store = grid.getStore();
+        store.remove(record);
+        store.sync();
+    },
+
+    _onEditPersona: function(itemGridEdit, record, item, index, e, eOpts){
+        console.log('Editar persona');
+        var win = Ext.create('eCredit.view.persona.ViewPanelFormPersona');
+        win.setTitle("Editar Persona - "+record.get('nombre') +' '+record.get('apePaterno') );
+        var form = win.down('form');
+        form.loadRecord(record);
+
+    },
+
+    _onClickCancelPersona:function(btn, e, eOpts){
+        var win = btn.up('window');
+        var form = win.down('form');
+        form.getForm().reset();
+        win.close();
+    },
+
+    _onClickSavePersona: function(btn, e, eOpts){
+        var win = btn.up('window');
+        var form = win.down('form');
+        var values = form.getValues();
+        var record = form.getRecord();
+        var grid = Ext.ComponentQuery.query('ViewPanelGridPersona')[0];
+        var store = grid.getStore();
+
+        if(record){// edicion
+            record.set(values);
+        } else {// nuevo REGISTRO
+            var persona = Ext.create('eCredit.model.persona.PersonaModel',{
+                numeroDni: values.numeroDni,
+                nombre: values.nombre,
+                apePaterno: values.apePaterno,
+                apeMaterno: values.apeMaterno,
+                numeroRuc: values.numeroRuc,
+                razonSocial: values.razonSocial,
+                direccion: values.direccion,
+                sexo: values.sexo,
+                fechaNacimiento: values.fechaNacimiento,
+                email: values.email,
+                telefonoFijo: values.telefonoFijo,
+                telefonoMovil: values.telefonoMovil,
+                estadoCivil: values.estadoCivil,
+                departamento: values.departamento,
+                provincia: values.provincia,
+                distrito: values.distrito,
+                indel: 0
+            });
+            store.insert(0, persona);
+        }
+        store.sync();
+        win.close();
+    },
+
     _onExpand: function () {
         var myTree = this.getViewTreeMain();
         myTree.expandAll();

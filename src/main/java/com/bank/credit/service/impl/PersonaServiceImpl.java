@@ -16,7 +16,7 @@ public class PersonaServiceImpl implements PersonaService {
         persona1.setNumeroDni("12457896");
         persona1.setNombre("Roy");
         persona1.setApePaterno("Calle");
-        persona1.setApePaterno("Sulca");
+        persona1.setApeMaterno("Sulca");
         persona1.setNumeroRuc("11124578969");
         persona1.setRazonSocial("Inforoy.Sac");
         persona1.setDireccion("Lima 368");
@@ -35,9 +35,32 @@ public class PersonaServiceImpl implements PersonaService {
             persona1.setIndel("1");
         }
 
+        Persona persona2 = new Persona();
+        persona2.setNumeroDni("987654321");
+        persona2.setNombre("Yeny");
+        persona2.setApePaterno("Canales");
+        persona2.setApeMaterno("P.");
+        persona2.setNumeroRuc("91254879611");
+        persona2.setRazonSocial("CrediUnion.Sac");
+        persona2.setDireccion("Lima 368");
+        persona2.setSexo("Femenino");
+        persona2.setFechaNacimiento("12/12/1995");
+        persona2.setEmail("yeny@gmail.com");
+        persona2.setTelefonoFijo("01 125 8956");
+        persona2.setTelefonoMovil("01 996 666945");
+        persona2.setEstadoCivil("Soltera");
+        persona2.setDepartamento("Ayacucho");
+        persona2.setDistrito("Huanta");
+        persona2.setProvincia("Huanta");
+        if(active == true){
+            persona2.setIndel("0");
+        } else {
+            persona2.setIndel("1");
+        }
         List<Persona> listPersons = new ArrayList<>();
         listPersons.add(persona1);
-
+        listPersons.add(persona2);
+listPersons
         return listPersons;
     }
 }

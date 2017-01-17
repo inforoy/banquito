@@ -1,6 +1,7 @@
+.gitignore
 .idea/
 Creditos.iml
 target/classes/
 target/maven-status/
-target/Creditos/
 target/test-classes/
+target/Creditos/

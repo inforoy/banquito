@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -76,12 +75,86 @@ public class PersonController extends AbstractController {
         return jsonData;
     }
 
-    @RequestMapping(value="/updatePersons.htm", method = RequestMethod.GET)
+    @RequestMapping(value="/createPersona.htm", method = RequestMethod.POST)
     @ResponseBody
-    public String updateListPersons(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String createPersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Gson gson = new Gson();
+        GeneralResponse generalResponse = new GeneralResponse();
+        String jsonData = null;
+        try {
+            boolean userActive = true;
+            List<Persona> list = personaService.listPersonActive(userActive);
 
-        return "";
+            generalResponse.setSuccess(true);
+            generalResponse.setMessage("");
+            generalResponse.setTotalCount(new Long(list.size()));
+            generalResponse.setData(list);
+
+        } catch (Exception e){
+            generalResponse.setSuccess(false);
+            generalResponse.setMessage(e.getMessage());
+            generalResponse.setTotalCount(0L);
+            generalResponse.setData(null);
+        } finally {
+            jsonData = gson.toJson(generalResponse);
+        }
+
+        return jsonData;
+    }
+
+    @RequestMapping(value="/updatePersona.htm", method = RequestMethod.POST)
+    @ResponseBody
+    public String updatePersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Gson gson = new Gson();
+        GeneralResponse generalResponse = new GeneralResponse();
+        String jsonData = null;
+        try {
+            boolean userActive = true;
+            List<Persona> list = personaService.listPersonActive(userActive);
+
+            generalResponse.setSuccess(true);
+            generalResponse.setMessage("");
+            generalResponse.setTotalCount(new Long(list.size()));
+            generalResponse.setData(list);
+
+        } catch (Exception e){
+            generalResponse.setSuccess(false);
+            generalResponse.setMessage(e.getMessage());
+            generalResponse.setTotalCount(0L);
+            generalResponse.setData(null);
+        } finally {
+            jsonData = gson.toJson(generalResponse);
+        }
+
+        return jsonData;
+    }
+
+    @RequestMapping(value="/deletePersona.htm", method = RequestMethod.POST)
+    @ResponseBody
+    public String deletePersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String numeroDni = request.getParameter("numeroDni");
+        Gson gson = new Gson();
+        GeneralResponse generalResponse = new GeneralResponse();
+        String jsonData = null;
+        try {
+            boolean userActive = true;
+            List<Persona> list = personaService.listPersonActive(userActive);
+
+            generalResponse.setSuccess(true);
+            generalResponse.setMessage("");
+            generalResponse.setTotalCount(new Long(list.size()));
+            generalResponse.setData(list);
+
+        } catch (Exception e){
+            generalResponse.setSuccess(false);
+            generalResponse.setMessage(e.getMessage());
+            generalResponse.setTotalCount(0L);
+            generalResponse.setData(null);
+        } finally {
+            jsonData = gson.toJson(generalResponse);
+        }
+
+        return jsonData;
     }
 
     @RequestMapping(value="/loadGridPersonsDefault.htm", method = RequestMethod.GET)
