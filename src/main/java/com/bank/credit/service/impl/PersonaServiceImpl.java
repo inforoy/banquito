@@ -60,7 +60,7 @@ public class PersonaServiceImpl implements PersonaService {
         List<Persona> listPersons = new ArrayList<>();
         listPersons.add(persona1);
         listPersons.add(persona2);
-listPersons
+
         return listPersons;
     }
 }
