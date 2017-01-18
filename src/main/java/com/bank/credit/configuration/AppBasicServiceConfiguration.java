@@ -5,5 +5,5 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = "com.bank.credit.service")
-public class AppServiceConfig {
+public class AppBasicServiceConfiguration {
 }
