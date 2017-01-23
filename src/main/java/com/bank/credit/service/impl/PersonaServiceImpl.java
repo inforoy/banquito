@@ -1,6 +1,6 @@
 package com.bank.credit.service.impl;
 
-import com.bank.credit.model.Persona;
+import com.bank.credit.model.bean.PersonaBean;
 import com.bank.credit.service.PersonaService;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +10,9 @@ import java.util.List;
 @Service("personaService")
 public class PersonaServiceImpl implements PersonaService {
 
-    public List<Persona> listPersonActive(boolean active){
+    public List<PersonaBean> listPersonActive(boolean active){
 
-        Persona persona1 = new Persona();
+        PersonaBean persona1 = new PersonaBean();
         persona1.setNumeroDni("12457896");
         persona1.setNombre("Roy");
         persona1.setApePaterno("Calle");
@@ -29,13 +29,13 @@ public class PersonaServiceImpl implements PersonaService {
         persona1.setDepartamento("Ayacucho");
         persona1.setDistrito("Ayacucho");
         persona1.setProvincia("Huamanga");
-        if(active == true){
+        if(active){
             persona1.setIndel("0");
         } else {
             persona1.setIndel("1");
         }
 
-        Persona persona2 = new Persona();
+        PersonaBean persona2 = new PersonaBean();
         persona2.setNumeroDni("987654321");
         persona2.setNombre("Yeny");
         persona2.setApePaterno("Canales");
@@ -52,12 +52,12 @@ public class PersonaServiceImpl implements PersonaService {
         persona2.setDepartamento("Ayacucho");
         persona2.setDistrito("Huanta");
         persona2.setProvincia("Huanta");
-        if(active == true){
+        if(active){
             persona2.setIndel("0");
         } else {
             persona2.setIndel("1");
         }
-        List<Persona> listPersons = new ArrayList<>();
+        List<PersonaBean> listPersons = new ArrayList<>();
         listPersons.add(persona1);
         listPersons.add(persona2);
 

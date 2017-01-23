@@ -1,7 +1,7 @@
 package com.bank.credit.controller;
 
-import com.bank.credit.model.Persona;
 import com.bank.credit.model.GeneralResponse;
+import com.bank.credit.model.bean.PersonaBean;
 import com.bank.credit.service.PersonaService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,14 @@ public class PersonController extends AbstractController {
     public String getListPersons(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
-        String jsonData = null;
+        String jsonData;
         try {
-            boolean userActive = false;
-            List<Persona> list = personaService.listPersonActive(userActive);
 
+            List<PersonaBean> list = personaService.listPersonActive(false);
+            long count = list.size();
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");
-            generalResponse.setTotalCount(new Long(list.size()));
+            generalResponse.setTotalCount(count);
             generalResponse.setData(list);
 
         } catch (Exception e){
@@ -53,14 +53,14 @@ public class PersonController extends AbstractController {
     public String listPersonActive(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
-        String jsonData = null;
+        String jsonData;
         try {
-            boolean userActive = true;
-            List<Persona> list = personaService.listPersonActive(userActive);
 
+            List<PersonaBean> list = personaService.listPersonActive(true);
+            long count = list.size();
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");
-            generalResponse.setTotalCount(new Long(list.size()));
+            generalResponse.setTotalCount(count);
             generalResponse.setData(list);
 
         } catch (Exception e){
@@ -80,14 +80,14 @@ public class PersonController extends AbstractController {
     public String createPersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
-        String jsonData = null;
+        String jsonData;
         try {
-            boolean userActive = true;
-            List<Persona> list = personaService.listPersonActive(userActive);
 
+            List<PersonaBean> list = personaService.listPersonActive(true);
+            long count = list.size();
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");
-            generalResponse.setTotalCount(new Long(list.size()));
+            generalResponse.setTotalCount(count);
             generalResponse.setData(list);
 
         } catch (Exception e){
@@ -107,14 +107,14 @@ public class PersonController extends AbstractController {
     public String updatePersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
-        String jsonData = null;
+        String jsonData;
         try {
-            boolean userActive = true;
-            List<Persona> list = personaService.listPersonActive(userActive);
 
+            List<PersonaBean> list = personaService.listPersonActive(true);
+            long count = list.size();
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");
-            generalResponse.setTotalCount(new Long(list.size()));
+            generalResponse.setTotalCount(count);
             generalResponse.setData(list);
 
         } catch (Exception e){
@@ -135,14 +135,14 @@ public class PersonController extends AbstractController {
         String numeroDni = request.getParameter("numeroDni");
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
-        String jsonData = null;
+        String jsonData;
         try {
-            boolean userActive = true;
-            List<Persona> list = personaService.listPersonActive(userActive);
 
+            List<PersonaBean> list = personaService.listPersonActive(true);
+            long count = list.size();
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");
-            generalResponse.setTotalCount(new Long(list.size()));
+            generalResponse.setTotalCount(count);
             generalResponse.setData(list);
 
         } catch (Exception e){
@@ -162,14 +162,14 @@ public class PersonController extends AbstractController {
     public String loadGridPersonsDefault(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
-        String jsonData = null;
+        String jsonData;
         try {
-            boolean userActive = true;
-            List<Persona> list = personaService.listPersonActive(userActive);
 
+            List<PersonaBean> list = personaService.listPersonActive(true);
+            long count = list.size();
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");
-            generalResponse.setTotalCount(new Long(list.size()));
+            generalResponse.setTotalCount(count);
             generalResponse.setData(list);
 
         } catch (Exception e){

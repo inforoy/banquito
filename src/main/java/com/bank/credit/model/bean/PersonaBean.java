@@ -1,6 +1,6 @@
-package com.bank.credit.model;
+package com.bank.credit.model.bean;
 
-public class Persona {
+public class PersonaBean {
 
     /*
     * Documento Nacional de Idencidad o Libreta Electoral   01--> LE / DNI (08)
@@ -164,4 +164,5 @@ public class Persona {
     public void setIndel(String indel) {
         this.indel = indel;
     }
+
 }

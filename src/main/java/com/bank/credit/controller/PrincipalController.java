@@ -1,7 +1,6 @@
 package com.bank.credit.controller;
 
 import com.bank.credit.model.AppSessionData;
-import com.bank.credit.model.Usuario;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class PrincipalController extends AbstractController{
@@ -53,7 +51,7 @@ public class PrincipalController extends AbstractController{
 		JsonObject jsonObject = new JsonObject();
 		//HttpSession session = request.getSession(false);
 		Gson gson = new Gson();
-		String jsonData = null;
+		String jsonData;
 		try {
 			jsonObject.addProperty("success", true);
 			jsonObject.addProperty("responseText", "responseText");

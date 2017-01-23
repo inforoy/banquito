@@ -1,6 +1,6 @@
 package com.bank.credit.service;
 
-import com.bank.credit.model.Persona;
+import com.bank.credit.model.bean.PersonaBean;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ public interface PersonaService {
 
     /**
      * Listado de Personas activas
-     * @param persona
-     * @return
+     * @param active
+     * @return List<PersonaBean>
      */
-    List<Persona> listPersonActive(boolean active);
+    List<PersonaBean> listPersonActive(boolean active);
 }
