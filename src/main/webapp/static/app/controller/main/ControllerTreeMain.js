@@ -101,26 +101,48 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
         if(record){// edicion
             record.set(values);
         } else {// nuevo REGISTRO
-            var persona = Ext.create('eCredit.model.persona.PersonaModel',{
-                numeroDni: values.numeroDni,
-                nombre: values.nombre,
-                apePaterno: values.apePaterno,
-                apeMaterno: values.apeMaterno,
-                numeroRuc: values.numeroRuc,
-                razonSocial: values.razonSocial,
-                direccion: values.direccion,
-                sexo: values.sexo,
-                fechaNacimiento: values.fechaNacimiento,
-                email: values.email,
-                telefonoFijo: values.telefonoFijo,
-                telefonoMovil: values.telefonoMovil,
-                estadoCivil: values.estadoCivil,
-                departamento: values.departamento,
-                provincia: values.provincia,
-                distrito: values.distrito,
-                indel: 0
+
+            Ext.Ajax.request({
+                method: 'POST',
+                url: 'createPersona.htm?dato=123',
+                params: {
+                    jsonData: Ext.JSON.encode(record)
+                },
+                success: function (response) {
+                    response = Ext.decode(response.responseText);
+                    if (response.success) {
+                        Ext.MessageBox.alert('CONFIRMACION', response.message);
+
+                        var persona = Ext.create('eCredit.model.persona.PersonaModel',{
+                            numeroDni: values.numeroDni,
+                            nombre: values.nombre,
+                            apePaterno: values.apePaterno,
+                            apeMaterno: values.apeMaterno,
+                            numeroRuc: values.numeroRuc,
+                            razonSocial: values.razonSocial,
+                            direccion: values.direccion,
+                            sexo: values.sexo,
+                            fechaNacimiento: values.fechaNacimiento,
+                            email: values.email,
+                            telefonoFijo: values.telefonoFijo,
+                            telefonoMovil: values.telefonoMovil,
+                            estadoCivil: values.estadoCivil,
+                            departamento: values.departamento,
+                            provincia: values.provincia,
+                            distrito: values.distrito,
+                            indel: 0
+                        });
+                        store.insert(0, persona);
+                    } else {
+                        Ext.MessageBox.alert('ERROR', response.message);
+                    }
+                },
+                failure: function () {
+                    console.log("Error*createPersona");
+                }
             });
-            store.insert(0, persona);
+
+
         }
         store.sync();
         win.close();
