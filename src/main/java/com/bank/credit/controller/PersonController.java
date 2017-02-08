@@ -3,9 +3,11 @@ package com.bank.credit.controller;
 import com.bank.credit.model.GeneralResponse;
 import com.bank.credit.model.bean.PersonaBean;
 import com.bank.credit.service.PersonaService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -80,26 +82,27 @@ public class PersonController extends AbstractController {
     public String createPersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
-        String jsonData;
+        String data;
+        String jsonData = request.getParameter("jsonData");
+        System.out.println("jsonData:"+jsonData);
+        ObjectMapper mapper = new ObjectMapper();
         try {
-
+            PersonaBean personaBean = mapper.readValue(jsonData, PersonaBean.class);
             List<PersonaBean> list = personaService.listPersonActive(true);
             long count = list.size();
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");
             generalResponse.setTotalCount(count);
             generalResponse.setData(list);
-
         } catch (Exception e){
             generalResponse.setSuccess(false);
             generalResponse.setMessage(e.getMessage());
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            data = gson.toJson(generalResponse);
         }
-
-        return jsonData;
+        return data;
     }
 
     @RequestMapping(value="/updatePersona.htm", method = RequestMethod.POST)
@@ -107,7 +110,7 @@ public class PersonController extends AbstractController {
     public String updatePersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
-        String jsonData;
+        String data;
         try {
 
             List<PersonaBean> list = personaService.listPersonActive(true);
@@ -123,10 +126,10 @@ public class PersonController extends AbstractController {
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            data = gson.toJson(generalResponse);
         }
 
-        return jsonData;
+        return data;
     }
 
     @RequestMapping(value="/deletePersona.htm", method = RequestMethod.POST)

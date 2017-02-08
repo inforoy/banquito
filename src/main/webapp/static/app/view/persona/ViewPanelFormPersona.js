@@ -99,6 +99,7 @@ Ext.define('eCredit.view.persona.ViewPanelFormPersona',{
                     xtype: 'textfield',
                     name: 'indel',
                     fieldLabel: 'indel',
+                    value:'0',
                     hidden: true
                 }
             ]
