@@ -70,7 +70,28 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
         var grid = btn.up('grid');
         var record = grid.getSelectionModel().getSelection();
         var store = grid.getStore();
-        store.remove(record);
+
+        Ext.Ajax.request({
+            method: 'POST',
+            url: 'deletePersona.htm',
+            params: {
+                //jsonData: JSON.stringify(values)
+                jsonData: record[0].data.numeroDni
+            },
+            success: function (response) {
+                response = Ext.decode(response.responseText);
+                if (response.success) {
+                    store.remove(record);
+                    ///Ext.MessageBox.alert('CONFIRMACION', response.message);
+                } else {
+                    //Ext.MessageBox.alert('ERROR', response.message);
+                }
+            },
+            failure: function () {
+                console.log("Error*deletePersona");
+            }
+        });
+
         store.sync();
     },
 
@@ -99,7 +120,28 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
         var store = grid.getStore();
 
         if(record){// edicion
-            record.set(values);
+
+            Ext.Ajax.request({
+                method: 'POST',
+                url: 'updatePersona.htm',
+                params: {
+                    //jsonData: JSON.stringify(values)
+                    jsonData: Ext.JSON.encode(values)
+                },
+                success: function (response) {
+                    response = Ext.decode(response.responseText);
+                    if (response.success) {
+                        record.set(values);
+                        Ext.MessageBox.alert('CONFIRMACION', response.message);
+                    } else {
+                        Ext.MessageBox.alert('ERROR', response.message);
+                    }
+                },
+                failure: function () {
+                    console.log("Error*updatePersona");
+                }
+            });
+
         } else {// nuevo REGISTRO
 
             var persona = Ext.create('eCredit.model.persona.PersonaModel',{
@@ -124,7 +166,7 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
 
             Ext.Ajax.request({
                 method: 'POST',
-                url: 'createPersona.htm',
+                url: 'savePersona.htm',
                 params: {
                     //jsonData: JSON.stringify(values)
                     jsonData: Ext.JSON.encode(values)
@@ -139,7 +181,7 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
                     }
                 },
                 failure: function () {
-                    console.log("Error*createPersona");
+                    console.log("Error*savePersona");
                 }
             });
         }

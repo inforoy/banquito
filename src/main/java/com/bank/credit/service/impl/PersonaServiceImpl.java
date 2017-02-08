@@ -10,6 +10,30 @@ import java.util.List;
 @Service("personaService")
 public class PersonaServiceImpl implements PersonaService {
 
+    public boolean savePersona(PersonaBean personaBean){
+        boolean result = false;
+        // convertir el BEAN a POJO
+        //result = personaDao.save(personaPojo);
+        result = true;
+        return result;
+    }
+
+    public boolean updatePersona(PersonaBean personaBean){
+        boolean result = false;
+        // convertir el BEAN a POJO
+        //result = personaDao.save(personaPojo);
+        result = true;
+        return result;
+    }
+
+    public boolean deletePersona(String numeroDni){
+        boolean result = false;
+        // convertir el BEAN a POJO
+        //result = personaDao.save(personaPojo);
+        result = true;
+        return result;
+    }
+
     public List<PersonaBean> listPersonActive(boolean active){
 
         PersonaBean persona1 = new PersonaBean();

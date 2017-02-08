@@ -23,6 +23,9 @@ public class PersonController extends AbstractController {
     @Autowired
     private PersonaService personaService;
 
+    public static final String OPERATION_SUCCESS = "La operacion se ha realizado con Exito.";
+    public static final String OPERATION_ERROR   = "Ha ocurrido un error inesperado.";
+
     @RequestMapping(value="/getListPersons.htm", method = RequestMethod.GET)
     @ResponseBody
     public String getListPersons(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -77,26 +80,24 @@ public class PersonController extends AbstractController {
         return jsonData;
     }
 
-    @RequestMapping(value="/createPersona.htm", method = RequestMethod.POST)
+    @RequestMapping(value="/savePersona.htm", method = RequestMethod.POST)
     @ResponseBody
-    public String createPersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String savePersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
         String data;
         String jsonData = request.getParameter("jsonData");
-        System.out.println("jsonData:"+jsonData);
         ObjectMapper mapper = new ObjectMapper();
         try {
             PersonaBean personaBean = mapper.readValue(jsonData, PersonaBean.class);
-            List<PersonaBean> list = personaService.listPersonActive(true);
-            long count = list.size();
+            boolean result = personaService.savePersona(personaBean);
             generalResponse.setSuccess(true);
-            generalResponse.setMessage("");
-            generalResponse.setTotalCount(count);
-            generalResponse.setData(list);
+            generalResponse.setMessage(OPERATION_SUCCESS);
+            generalResponse.setTotalCount(0L);
+            generalResponse.setData(result);
         } catch (Exception e){
             generalResponse.setSuccess(false);
-            generalResponse.setMessage(e.getMessage());
+            generalResponse.setMessage(e.getMessage() == null ? OPERATION_ERROR : e.getMessage());
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
@@ -111,18 +112,19 @@ public class PersonController extends AbstractController {
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
         String data;
+        String jsonData = request.getParameter("jsonData");
+        ObjectMapper mapper = new ObjectMapper();
         try {
-
-            List<PersonaBean> list = personaService.listPersonActive(true);
-            long count = list.size();
+            PersonaBean personaBean = mapper.readValue(jsonData, PersonaBean.class);
+            boolean result = personaService.updatePersona(personaBean);
             generalResponse.setSuccess(true);
-            generalResponse.setMessage("");
-            generalResponse.setTotalCount(count);
-            generalResponse.setData(list);
+            generalResponse.setMessage(OPERATION_SUCCESS);
+            generalResponse.setTotalCount(0L);
+            generalResponse.setData(result);
 
         } catch (Exception e){
             generalResponse.setSuccess(false);
-            generalResponse.setMessage(e.getMessage());
+            generalResponse.setMessage(e.getMessage() == null ? OPERATION_ERROR : e.getMessage());
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
@@ -135,22 +137,20 @@ public class PersonController extends AbstractController {
     @RequestMapping(value="/deletePersona.htm", method = RequestMethod.POST)
     @ResponseBody
     public String deletePersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String numeroDni = request.getParameter("numeroDni");
+        String numeroDni = request.getParameter("jsonData");
         Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData;
         try {
-
-            List<PersonaBean> list = personaService.listPersonActive(true);
-            long count = list.size();
+            boolean result = personaService.deletePersona(numeroDni);
             generalResponse.setSuccess(true);
-            generalResponse.setMessage("");
-            generalResponse.setTotalCount(count);
-            generalResponse.setData(list);
+            generalResponse.setMessage(OPERATION_SUCCESS);
+            generalResponse.setTotalCount(0L);
+            generalResponse.setData(result);
 
         } catch (Exception e){
             generalResponse.setSuccess(false);
-            generalResponse.setMessage(e.getMessage());
+            generalResponse.setMessage(e.getMessage() == null ? OPERATION_ERROR : e.getMessage());
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
