@@ -35,11 +35,12 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
                 click: this._onDeletePersona
             },
 
-            /** acciones del los botones guardar y acncelar **/
+            /** Cancelar Persona **/
             'ViewPanelFormPersona button#cancel': {
                 click: this._onClickCancelPersona
             },
 
+            /** Guardar Persona**/
             'ViewPanelFormPersona button#save': {
                 click: this._onClickSavePersona
             },
@@ -51,8 +52,9 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
                 click: this._onColapse
             }
         });
-    },
-    _onItemClick: function (view, record) {
+    }
+
+    ,_onItemClick: function (view, record) {
         var id = record.internalId;
         console.log('_onItemClick:'+id);
         if('ext-record-23' === id){// Registrar Persona
@@ -60,13 +62,14 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
         } else {
             console.log("Otros");
         }
-    },
-    _onAddPersona: function(btn, e, eOpts){
+    }
+
+    ,_onAddPersona: function(btn, e, eOpts){
         var win = Ext.create('eCredit.view.persona.ViewPanelFormPersona');
         win.setTitle("Nueva Persona");
-    },
+    }
 
-    _onDeletePersona:function(btn, e, eOpts){
+    ,_onDeletePersona:function(btn, e, eOpts){
         var grid = btn.up('grid');
         var record = grid.getSelectionModel().getSelection();
         var store = grid.getStore();
@@ -93,25 +96,25 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
         });
 
         store.sync();
-    },
+    }
 
-    _onEditPersona: function(itemGridEdit, record, item, index, e, eOpts){
+    ,_onEditPersona: function(itemGridEdit, record, item, index, e, eOpts){
         console.log('Editar persona');
         var win = Ext.create('eCredit.view.persona.ViewPanelFormPersona');
         win.setTitle("Editar Persona - "+record.get('nombre') +' '+record.get('apePaterno') );
         var form = win.down('form');
         form.loadRecord(record);
 
-    },
+    }
 
-    _onClickCancelPersona:function(btn, e, eOpts){
+    ,_onClickCancelPersona:function(btn, e, eOpts){
         var win = btn.up('window');
         var form = win.down('form');
         form.getForm().reset();
         win.close();
-    },
+    }
 
-    _onClickSavePersona: function(btn, e, eOpts){
+    ,_onClickSavePersona: function(btn, e, eOpts){
         var win = btn.up('window');
         var form = win.down('form');
         var values = form.getValues();
@@ -125,7 +128,6 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
                 method: 'POST',
                 url: 'updatePersona.htm',
                 params: {
-                    //jsonData: JSON.stringify(values)
                     jsonData: Ext.JSON.encode(values)
                 },
                 success: function (response) {
@@ -168,7 +170,6 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
                 method: 'POST',
                 url: 'savePersona.htm',
                 params: {
-                    //jsonData: JSON.stringify(values)
                     jsonData: Ext.JSON.encode(values)
                 },
                 success: function (response) {
@@ -184,23 +185,26 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
                     console.log("Error*savePersona");
                 }
             });
+
         }
         store.sync();
         win.close();
-    },
+    }
 
-    _onExpand: function () {
+    ,_onExpand: function () {
         var myTree = this.getViewTreeMain();
         myTree.expandAll();
         console.log('_onExpand');
     }
+
     ,_onColapse: function () {
         var myTree = this.getViewTreeMain();
         myTree.collapseAll();
         console.log('_onColapse');
     }
+
     , _viewRegistrarPersona: function(view) {
-        console.log('Registrar Persona');
+        console.log('Registrar Persona'+view);
         var gnrlViewTab = Ext.create('eCredit.view.main.ViewPanelGeneral', {
             title: "Registrar Persona",//response.tab,
             closable: true
