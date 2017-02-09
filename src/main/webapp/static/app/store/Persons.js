@@ -4,7 +4,7 @@ Ext.define('eCredit.store.Persons', {
     model: 'eCredit.model.Person',
     autoLoad: true,
     start: 0,
-    limit: 10,
+    limit: 5,
     pageSize: 5,
     proxy : {
         type: 'ajax',

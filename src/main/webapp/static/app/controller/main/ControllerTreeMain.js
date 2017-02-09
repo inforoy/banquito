@@ -58,7 +58,7 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
         var id = record.internalId;
         console.log('_onItemClick:'+id);
         if('ext-record-23' === id){// Registrar Persona
-            this._viewRegistrarPersona(view);
+            this._viewListarPersona(view);
         } else {
             console.log("Otros");
         }
@@ -203,7 +203,7 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
         console.log('_onColapse');
     }
 
-    , _viewRegistrarPersona: function(view) {
+    , _viewListarPersona: function(view) {
         console.log('Registrar Persona'+view);
         var gnrlViewTab = Ext.create('eCredit.view.main.ViewPanelGeneral', {
             title: "Registrar Persona",//response.tab,

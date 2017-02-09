@@ -23,7 +23,7 @@ public class PersonController extends AbstractController {
     @Autowired
     private PersonaService personaService;
 
-    public static final String OPERATION_SUCCESS = "La operacion se ha realizado con Exito.";
+    public static final String OPERATION_SUCCESS = "La operaci&oacute;n se ha realizado con &Eacute;xito.";
     public static final String OPERATION_ERROR   = "Ha ocurrido un error inesperado.";
 
     @RequestMapping(value="/getListPersons.htm", method = RequestMethod.GET)
@@ -147,7 +147,6 @@ public class PersonController extends AbstractController {
             generalResponse.setMessage(OPERATION_SUCCESS);
             generalResponse.setTotalCount(0L);
             generalResponse.setData(result);
-
         } catch (Exception e){
             generalResponse.setSuccess(false);
             generalResponse.setMessage(e.getMessage() == null ? OPERATION_ERROR : e.getMessage());
@@ -156,7 +155,6 @@ public class PersonController extends AbstractController {
         } finally {
             jsonData = gson.toJson(generalResponse);
         }
-
         return jsonData;
     }
 

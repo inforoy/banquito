@@ -7,7 +7,26 @@ Ext.define('eCredit.view.persona.ViewPanelGridPersona',{
     loadMask: true,
     columnLines: true,
 
-    initComponent: function() {
+    listeners: {
+        render: function (grid) {
+            grid.down('pagingtoolbar').moveFirst();
+        }
+    }
+
+    ,bbar:{
+        xtype: 'pagingtoolbar',
+        pageSize: 5,
+        store: 'eCredit.store.persona.PersonaStore',
+        displayInfo: true,
+        displayMsg: 'Mostrando {0} - {1} de {2}',
+        items:['-',
+            {text:'EXPORTAR A PDF',action:'exportPdfPersonas',iconCls:'icon-pdf'},'-'
+            ,{ text:'EXPORTAR A EXCEL',action:'exportXlsPersonas',iconCls:'icon-excel'}],
+        emptyMsg: 'No existe informacion a mostrar'
+    }
+
+    ,initComponent: function() {
+
         this.columns = [
 
             {
@@ -113,6 +132,7 @@ Ext.define('eCredit.view.persona.ViewPanelGridPersona',{
 
         ];
         this.callParent(arguments);
+
     },
 
     dockedItems: [
@@ -133,16 +153,18 @@ Ext.define('eCredit.view.persona.ViewPanelGridPersona',{
                     iconCls: 'icon-delete'
                 }
             ]
-        },
-        {
+        }
+/*
+        ,{
             xtype: 'pagingtoolbar',
-            pageSize: 10,
+            pageSize: 5,
             store: 'eCredit.store.persona.PersonaStore',
             displayInfo: true,
             dock: 'bottom',
             displayInfo: true,
             emptyMsg: 'No existe informaci&oacute;n a mostrar'
         }
+        */
     ]
 
 });

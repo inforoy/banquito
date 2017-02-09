@@ -1,22 +1,17 @@
 Ext.define('eCredit.store.persona.PersonaStore',{
     extend: 'Ext.data.Store',
     model: 'eCredit.model.persona.PersonaModel',
-    pageSize: 4,
+    pageSize: 5,
     proxy: {
-        type: 'ajax',
-        //url: 'getListPersons.htm',
         actionMethods: {
             create: 'POST',
             read: 'GET',
             update: 'POST',
             destroy:'POST'
         },
-        api: {
-            create: 'createPersona.htm',
-            read: 'listPersonActive.htm',
-            update: 'updatePersona.htm',
-            destroy: 'deletePersona.htm'
-        },
+
+        type: 'ajax'
+        ,url: 'getListPersons.htm'
 
         /*
         extraParams:{
@@ -24,19 +19,13 @@ Ext.define('eCredit.store.persona.PersonaStore',{
         },
         */
 
-        reader: {
+        ,reader: {
             type: 'json'
             ,root: 'data'
-            //,totalProperty: 'totalCount'
-            //,successProperty: 'success'
-        },
-
-        writer: {
-            type: 'json',
-            root: 'data',
-            encode: true
+            ,totalProperty: 'totalCount'
+            ,successProperty: 'success'
         }
-    },
-    autoLoad: true
+    }
+    //,autoLoad: true
 });
 
