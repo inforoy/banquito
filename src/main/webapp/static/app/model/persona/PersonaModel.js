@@ -19,5 +19,4 @@ Ext.define('eCredit.model.persona.PersonaModel',{
         ,'distrito'
         ,'indel'
     ]
-
 });

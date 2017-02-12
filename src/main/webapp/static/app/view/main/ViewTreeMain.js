@@ -1,4 +1,3 @@
-
 Ext.define("eCredit.view.main.ViewTreeMain",{
 	extend:"Ext.tree.Panel",
     cls: 'custom-grid',

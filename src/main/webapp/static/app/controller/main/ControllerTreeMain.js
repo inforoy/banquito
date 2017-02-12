@@ -4,7 +4,12 @@ Ext.define('eCredit.controller.main.ControllerTreeMain', {
         'eCredit.model.persona.PersonaModel'
     ],
     stores: [
-        'eCredit.store.persona.PersonaStore'
+        'eCredit.store.persona.PersonaStore',
+        'eCredit.store.combo.SexoStore',
+        'eCredit.store.combo.DepartamentoStore',
+        'eCredit.store.combo.ProvinciaStore',
+        'eCredit.store.combo.DistritoStore',
+        'eCredit.store.combo.EstadoCivilStore'
     ],
     views: [
         'eCredit.view.main.ViewPanelGeneral',
