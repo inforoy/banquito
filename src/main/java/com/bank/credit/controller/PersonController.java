@@ -4,7 +4,6 @@ import com.bank.credit.model.GeneralResponse;
 import com.bank.credit.model.bean.*;
 import com.bank.credit.service.PersonaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,65 +28,58 @@ public class PersonController extends AbstractController {
     @RequestMapping(value="/getListPersons.htm", method = RequestMethod.GET)
     @ResponseBody
     public String getListPersons(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData;
+        ObjectMapper mapper = new ObjectMapper();
         try {
-
             List<PersonaBean> list = personaService.listPersonActive(false);
             long count = list.size();
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");
             generalResponse.setTotalCount(count);
             generalResponse.setData(list);
-
         } catch (Exception e){
             generalResponse.setSuccess(false);
             generalResponse.setMessage(e.getMessage());
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            jsonData = mapper.writeValueAsString(generalResponse);
         }
-
         return jsonData;
     }
 
     @RequestMapping(value="/listPersonActive.htm", method = RequestMethod.GET)
     @ResponseBody
     public String listPersonActive(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Gson gson = new Gson();
+        ObjectMapper mapper = new ObjectMapper();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData;
         try {
-
             List<PersonaBean> list = personaService.listPersonActive(true);
             long count = list.size();
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");
             generalResponse.setTotalCount(count);
             generalResponse.setData(list);
-
         } catch (Exception e){
             generalResponse.setSuccess(false);
             generalResponse.setMessage(e.getMessage());
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            jsonData = mapper.writeValueAsString(generalResponse);
         }
-
         return jsonData;
     }
 
-    @RequestMapping(value="/savePersona.htm", method = RequestMethod.POST)
+    @RequestMapping(value="/savePersona.htm", method = RequestMethod.GET)
     @ResponseBody
     public String savePersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Gson gson = new Gson();
+        ObjectMapper mapper = new ObjectMapper();
         GeneralResponse generalResponse = new GeneralResponse();
         String data;
         String jsonData = request.getParameter("jsonData");
-        ObjectMapper mapper = new ObjectMapper();
         try {
             PersonaBean personaBean = mapper.readValue(jsonData, PersonaBean.class);
             boolean result = personaService.savePersona(personaBean);
@@ -101,15 +93,14 @@ public class PersonController extends AbstractController {
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            data = gson.toJson(generalResponse);
+            data = mapper.writeValueAsString(generalResponse);
         }
         return data;
     }
 
-    @RequestMapping(value="/updatePersona.htm", method = RequestMethod.POST)
+    @RequestMapping(value="/updatePersona.htm", method = RequestMethod.GET)
     @ResponseBody
     public String updatePersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
         String data;
         String jsonData = request.getParameter("jsonData");
@@ -121,24 +112,22 @@ public class PersonController extends AbstractController {
             generalResponse.setMessage(OPERATION_SUCCESS);
             generalResponse.setTotalCount(0L);
             generalResponse.setData(result);
-
         } catch (Exception e){
             generalResponse.setSuccess(false);
             generalResponse.setMessage(e.getMessage() == null ? OPERATION_ERROR : e.getMessage());
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            data = gson.toJson(generalResponse);
+            data = mapper.writeValueAsString(generalResponse);
         }
-
         return data;
     }
 
-    @RequestMapping(value="/deletePersona.htm", method = RequestMethod.POST)
+    @RequestMapping(value="/deletePersona.htm", method = RequestMethod.GET)
     @ResponseBody
     public String deletePersona(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
         String numeroDni = request.getParameter("jsonData");
-        Gson gson = new Gson();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData;
         try {
@@ -153,7 +142,7 @@ public class PersonController extends AbstractController {
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            jsonData = mapper.writeValueAsString(generalResponse);
         }
         return jsonData;
     }
@@ -161,34 +150,31 @@ public class PersonController extends AbstractController {
     @RequestMapping(value="/loadGridPersonsDefault.htm", method = RequestMethod.GET)
     @ResponseBody
     public String loadGridPersonsDefault(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Gson gson = new Gson();
+        ObjectMapper mapper = new ObjectMapper();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData;
         try {
-
             List<PersonaBean> list = personaService.listPersonActive(true);
             long count = list.size();
             generalResponse.setSuccess(true);
             generalResponse.setMessage("");
             generalResponse.setTotalCount(count);
             generalResponse.setData(list);
-
         } catch (Exception e){
             generalResponse.setSuccess(false);
             generalResponse.setMessage(e.getMessage());
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            jsonData = mapper.writeValueAsString(generalResponse);
         }
-
         return jsonData;
     }
 
     @RequestMapping(value="/getSexo.htm", method = RequestMethod.GET)
     @ResponseBody
     public String getSexo(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Gson gson = new Gson();
+        ObjectMapper mapper = new ObjectMapper();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData;
         try {
@@ -217,7 +203,7 @@ public class PersonController extends AbstractController {
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            jsonData = mapper.writeValueAsString(generalResponse);
         }
         return jsonData;
     }
@@ -225,7 +211,7 @@ public class PersonController extends AbstractController {
     @RequestMapping(value="/getDepartamento.htm", method = RequestMethod.GET)
     @ResponseBody
     public String getDepartamento(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Gson gson = new Gson();
+        ObjectMapper mapper = new ObjectMapper();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData;
         try {
@@ -254,7 +240,7 @@ public class PersonController extends AbstractController {
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            jsonData = mapper.writeValueAsString(generalResponse);
         }
         return jsonData;
     }
@@ -262,7 +248,7 @@ public class PersonController extends AbstractController {
     @RequestMapping(value="/getProvincia.htm", method = RequestMethod.GET)
     @ResponseBody
     public String getProvincia(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Gson gson = new Gson();
+        ObjectMapper mapper = new ObjectMapper();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData;
         try {
@@ -291,7 +277,7 @@ public class PersonController extends AbstractController {
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            jsonData = mapper.writeValueAsString(generalResponse);
         }
         return jsonData;
     }
@@ -299,7 +285,7 @@ public class PersonController extends AbstractController {
     @RequestMapping(value="/getDistrito.htm", method = RequestMethod.GET)
     @ResponseBody
     public String getDistrito(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Gson gson = new Gson();
+        ObjectMapper mapper = new ObjectMapper();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData;
         try {
@@ -328,7 +314,7 @@ public class PersonController extends AbstractController {
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            jsonData = mapper.writeValueAsString(generalResponse);
         }
         return jsonData;
     }
@@ -337,7 +323,7 @@ public class PersonController extends AbstractController {
     @RequestMapping(value="/getEstadoCivil.htm", method = RequestMethod.GET)
     @ResponseBody
     public String getEstadoCivil(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Gson gson = new Gson();
+        ObjectMapper mapper = new ObjectMapper();
         GeneralResponse generalResponse = new GeneralResponse();
         String jsonData;
         try {
@@ -365,7 +351,7 @@ public class PersonController extends AbstractController {
             generalResponse.setTotalCount(0L);
             generalResponse.setData(null);
         } finally {
-            jsonData = gson.toJson(generalResponse);
+            jsonData = mapper.writeValueAsString(generalResponse);
         }
         return jsonData;
     }

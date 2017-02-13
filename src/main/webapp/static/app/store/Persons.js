@@ -1,4 +1,3 @@
-
 Ext.define('eCredit.store.Persons', {
     extend: 'Ext.data.Store',
     model: 'eCredit.model.Person',

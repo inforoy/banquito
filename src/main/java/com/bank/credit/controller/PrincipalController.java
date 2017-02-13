@@ -1,8 +1,7 @@
 package com.bank.credit.controller;
 
 import com.bank.credit.model.AppSessionData;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -13,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 @Controller
 public class PrincipalController extends AbstractController{
@@ -48,34 +48,27 @@ public class PrincipalController extends AbstractController{
 	public String getAttributesToSession(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
-		JsonObject jsonObject = new JsonObject();
 		//HttpSession session = request.getSession(false);
-		Gson gson = new Gson();
+		ObjectMapper mapper = new ObjectMapper();
+		HashMap<Object, String> jsonObject = new HashMap<>();
 		String jsonData;
 		try {
-			jsonObject.addProperty("success", true);
-			jsonObject.addProperty("responseText", "responseText");
-			jsonObject.addProperty("descriptionAgency", "Ayacucho");
-			jsonObject.addProperty("username", "Yeny");
-			jsonObject.addProperty("descriptionRole", "Prestamista");
-
-			jsonObject.addProperty("responseText", "responseText");
-			jsonObject.addProperty("fullName", "Yeny Canales.");
-			jsonObject.addProperty("category", "COLABORADOR.");
-
-			jsonObject.addProperty("pending", "0");
-			jsonObject.addProperty("process", "21");
-
-
-
-
+			jsonObject.put("success","true");
+			jsonObject.put("responseText", "responseText");
+			jsonObject.put("descriptionAgency", "Ayacucho");
+			jsonObject.put("username", "Yeny");
+			jsonObject.put("descriptionRole", "Prestamista");
+			jsonObject.put("responseText", "responseText");
+			jsonObject.put("fullName", "Yeny Canales.");
+			jsonObject.put("category", "COLABORADOR.");
+			jsonObject.put("pending", "0");
+			jsonObject.put("process", "1");
 		} catch (Exception e){
 			e.getMessage();
-			jsonObject.addProperty("mensaje", e.getMessage());
+			jsonObject.put("mensaje", e.getMessage());
 		} finally {
-			jsonData = gson.toJson(jsonObject);
+			jsonData = mapper.writeValueAsString(jsonObject);
 		}
-
 		return jsonData;
 	}
 

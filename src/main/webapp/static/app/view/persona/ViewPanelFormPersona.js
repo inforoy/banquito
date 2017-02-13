@@ -1,19 +1,3 @@
-var storeSexo = Ext.create('Ext.data.Store', {
-    fields: ['id', 'description'],
-    data: [
-        {
-            "id": "",
-            "description": "Seleccione"
-        }, {
-            "id": "M",
-            "description": "Masculino"
-        }, {
-            "id": "F",
-            "description": "Femenino"
-        }
-    ]
-});
-
 Ext.define('eCredit.view.persona.ViewPanelFormPersona',{
     extend: 'Ext.window.Window',
     alias: 'widget.ViewPanelFormPersona',
